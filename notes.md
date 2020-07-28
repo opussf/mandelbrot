@@ -25,3 +25,26 @@ JAVASCRIPT:
   link.setAttribute('href', canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
   link.click();
 
+https://stackoverflow.com/questions/10673122/how-to-save-canvas-as-an-image-with-canvas-todataurl
+
+```// Convert canvas to image
+document.getElementById('btn-download').addEventListener("click", function(e) {
+    var canvas = document.querySelector('#my-canvas');
+
+    var dataURL = canvas.toDataURL("image/jpeg", 1.0);
+
+    downloadImage(dataURL, 'my-canvas.jpeg');
+});
+
+// Save | Download image
+function downloadImage(data, filename = 'untitled.jpeg') {
+    var a = document.createElement('a');
+    a.href = data;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+}```
+
+## More interaction
+
+https://stackoverflow.com/questions/6598285/how-do-i-prevent-the-slow-script-warning-and-force-the-browser-to-continue-runni

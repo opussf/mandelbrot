@@ -74,8 +74,8 @@ function mandelbrotFunction() {
 	var zw = document.getElementById( "zoomCanvas" ).width;
 	var zh = document.getElementById( "zoomCanvas" ).height;
 	var zoom = function( event ) {
-		var x = event.layerX;
-		var y = event.layerY;
+		var x = event.clientX;
+		var y = event.clientY;
 
 		var zoomImgData = ctx.getImageData(  // left, top, width, height
 				Math.min( Math.max( 0, x - (zw/2) ) ),
@@ -87,8 +87,8 @@ function mandelbrotFunction() {
 	}
 	c.addEventListener( 'mousemove', zoom );
 	var zoomClick = function( event ) {
-		var x = event.layerX;
-		var y = event.layerY;
+		var x = event.clientX;
+		var y = event.clientY;
 		var mbX = mbXMin + ( xInc * x );
 		var mbY = mbYMin + ( yInc * y );
 		var Zoom = ZoomOri * 5;
