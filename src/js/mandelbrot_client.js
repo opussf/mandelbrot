@@ -1,6 +1,6 @@
 // Do the Mandle brot
 
-function mandelSet( x, y, limit = 1024 ) {
+function mandelSet( x, y, limit = 40000 ) {
 	zr = x;
 	zi = y;
 	rsqrd = zr*zr + zi*zi;
@@ -69,5 +69,13 @@ function mandelbrotFunction() {
 		}
 		ctx.putImageData( imgData, 0, 0 );
 	}
+	var zoomctx = document.getElementById( "zoomCanvas" ).getContext( '2d' );
+	var zoom = function( event ) {
+		var x = event.layerX;
+		var y = event.layerY;
+		//zoomctx.drawImage( c, 
+		//		Math.min( Math.max( 0, x-5 ), 
+		//);
+	}	
 }
 

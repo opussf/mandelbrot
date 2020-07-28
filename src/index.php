@@ -22,5 +22,6 @@ if( $Zoom == 0 ) { $Zoom = 2; }
 </form>
 <br/>
 <canvas id="fractal" width="1024" height="768" style="border:1px solid #000000;"></canvas>
+<canvas id="zoomCanvas" width="300" height="300"></canvas>
 </body>
 </html>
