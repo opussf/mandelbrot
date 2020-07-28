@@ -49,6 +49,6 @@ function downloadImage(data, filename = 'untitled.jpeg') {
     a.click();
 }```
 
-## More interaction
+## More interaction (slow script fix)
 
 https://stackoverflow.com/questions/6598285/how-do-i-prevent-the-slow-script-warning-and-force-the-browser-to-continue-runni
