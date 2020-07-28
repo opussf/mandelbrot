@@ -53,7 +53,7 @@ function mandelbrotFunction() {
 	var x, y;
 	for( y = 0; y <= height; y++ ) {
 		for( x = 0; x <= width; x++ ) {
-			console.log( x + "," + y + "\n" ) ;
+			//console.log( x + "," + y + "\n" ) ;
 			mbX = mbXMin + ( xInc * x );
 			mbY = mbYMin + ( yInc * y );
 			var cA = mandelSet( mbX, mbY, 40000 );
