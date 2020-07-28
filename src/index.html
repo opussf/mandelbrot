@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="js/colors.js"></script>
+<script src="js/mandelbrot_client.js"></script>
 <title>Mandelbrot Project</title>
 </head>
 <body>
-<canvas id="fractal" width="640" height="480" style="border:1px solid #000000;"></canvas>
+<input type="text" name="XCenter" id="XCenter">
+<input type="text" name="YCenter" id="YCenter">
+<input type="text" name="Zoom" id="Zoom">
+<button onclick="mandelbrotFunction()">Go</button>
+<input type="text" name="width" id="width">
+<input type="text" name="height" id="height">
+<br/>
+<canvas id="fractal" width="800" height="600" style="border:1px solid #000000;"></canvas>
 </body>
 </html>

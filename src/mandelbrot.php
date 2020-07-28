@@ -2,6 +2,8 @@
 #var_dump( $_GET );
 
 $maxLimit = 1000000;
+$maxLimit = 1000;
+$maxLimit = 256;
 
 $ip = $_SERVER["REMOTE_ADDR"];
 $me = $_SERVER["PHP_SELF"];
