@@ -40,6 +40,7 @@ function mandelbrotFunction() {
 	document.getElementById( "XCenter" ).value = XCenter;
 	document.getElementById( "YCenter" ).value = YCenter;
 	document.getElementById( "Zoom" ).value = Zoom;
+	var ZoomOri = Zoom;
 	Zoom = 2/Zoom;
 
 	var mbXMin = Number( XCenter ) - Number( Zoom );
@@ -70,12 +71,31 @@ function mandelbrotFunction() {
 		ctx.putImageData( imgData, 0, 0 );
 	}
 	var zoomctx = document.getElementById( "zoomCanvas" ).getContext( '2d' );
+	var zw = document.getElementById( "zoomCanvas" ).width;
+	var zh = document.getElementById( "zoomCanvas" ).height;
 	var zoom = function( event ) {
 		var x = event.layerX;
 		var y = event.layerY;
-		//zoomctx.drawImage( c, 
-		//		Math.min( Math.max( 0, x-5 ), 
-		//);
-	}	
+
+		var zoomImgData = ctx.getImageData(  // left, top, width, height
+				Math.min( Math.max( 0, x - (zw/2) ) ),
+				Math.min( Math.max( 0, y - (zh/2) ) ),
+				zw,
+				zh);
+		zoomctx.putImageData( zoomImgData, 0, 0 );  	
+		zoomctx.scale( 2, 2 );
+	}
+	c.addEventListener( 'mousemove', zoom );
+	var zoomClick = function( event ) {
+		var x = event.layerX;
+		var y = event.layerY;
+		var mbX = mbXMin + ( xInc * x );
+		var mbY = mbYMin + ( yInc * y );
+		var Zoom = ZoomOri * 5;
+	
+		var parameters = "?XCenter=" + mbX + "&YCenter=" + mbY + "&Zoom=" + Zoom;
+		window.open( parameters, '_self' );
+	}
+	c.addEventListener( 'click', zoomClick );
 }
 
