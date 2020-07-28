@@ -16,6 +16,10 @@ ctx.scale(2, 2) // Doubles size of anything draw to canvas.
 
 ## Save
 
+https://stackoverflow.com/questions/37859069/how-to-change-save-image-to-file-default-name/38007603
+
+
+
 <a id="link"></a>
 
 JAVASCRIPT:
