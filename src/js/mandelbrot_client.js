@@ -52,12 +52,14 @@ function mandelbrotFunction() {
 	var yInc = ( mbYMax - mbYMin ) / height;
 
 	var x, y;
+	var totalIterations = 0;
 	for( y = 0; y <= height; y++ ) {
 		for( x = 0; x <= width; x++ ) {
 			//console.log( x + "," + y + "\n" ) ;
 			mbX = mbXMin + ( xInc * x );
 			mbY = mbYMin + ( yInc * y );
 			var cA = mandelSet( mbX, mbY, 40000 );
+			totalIterations += cA[1];
 			var dataCoord = ( ( y * width ) + x ) * 4;
 			//console.log( dataCoord  )
 			var colors = mkColorArray( cA );
@@ -65,11 +67,79 @@ function mandelbrotFunction() {
 			colors.forEach( function( item, index, array ) {
 				imgData.data[dataCoord + index] = item;
 			} );
-
-			//document.getElementById( "width" ).value = mbX;
 		}
 		ctx.putImageData( imgData, 0, 0 );
 	}
+	document.getElementById( "iterations" ).value = totalIterations;
+
+
+	startX = 0;
+	startY = 0;
+	endX = 0;
+	endY = 0;
+	cX = 0;
+	cY = 0;
+	md = false;
+	function mouseDown( event ) {
+		startX = event.clientX;
+		startY = event.clientY;
+		endX = event.clientX;
+		endY = event.clientY;
+		md = true;
+	}
+	function mouseMove( event ) {
+		if( typeof md === 'undefined' || md === false ) { return; }
+		endX = event.clientX;
+		endY = event.clientY;
+
+		cX = Math.min( startX, endX ) + ( ( Math.max( startX, endX ) - Math.min( startX, endX ) ) / 2 );
+		cY = Math.min( startY, endY ) + ( ( Math.max( startY, endY ) - Math.min( startY, endY ) ) / 2 );
+
+		ctx.putImageData( imgData, 0, 0 );
+		ctx.lineWidth = 2;
+		ctx.strokeStyle = "white";
+		ctx.beginPath();
+		ctx.moveTo( startX, startY );
+		ctx.lineTo( endX, startY );
+		ctx.lineTo( endX, endY );
+		ctx.lineTo( startX, endY );
+		ctx.closePath();
+		ctx.moveTo( cX, startY );
+		ctx.lineTo( cX, endY );
+		ctx.moveTo( startX, cY );
+		ctx.lineTo( endX, cY );
+		ctx.stroke();
+	}
+	function mouseUp( event ) {
+		md = false;
+	}
+	function zoomImage( event ) {
+		var mbX = mbXMin + ( xInc * cX );
+		var mbY = mbYMin + ( yInc * cY );
+		var xDis = Math.max( startX, endX ) - Math.min( startX, endX );
+		var yDis = Math.max( startY, endY ) - Math.min( startY, endY );
+
+		if( xDis > yDis ) {
+			mbDis = ( xInc * xDis );
+		} else {
+			mbDis = ( yInc * yDis );
+		}
+		var zoom = mbDis / 2;
+	
+		var parameters = "?XCenter=" + mbX + "&YCenter=" + mbY + "&Zoom=" + zoom;
+		window.open( parameters, '_self' );
+		
+	}
+
+	c.addEventListener( "mousedown", mouseDown );
+	c.addEventListener( "mousemove", mouseMove );
+	c.addEventListener( "mouseup", mouseUp );
+
+	document.getElementById( "zoomImage" ).addEventListener( "click", zoomImage );
+
+
+
+/*
 	var zoomctx = document.getElementById( "zoomCanvas" ).getContext( '2d' );
 	var zw = document.getElementById( "zoomCanvas" ).width;
 	var zh = document.getElementById( "zoomCanvas" ).height;
@@ -97,6 +167,7 @@ function mandelbrotFunction() {
 		window.open( parameters, '_self' );
 	}
 	c.addEventListener( 'click', zoomClick );
+*/
 }
 
 function saveImage() {
@@ -110,3 +181,5 @@ function saveImage() {
 	link.setAttribute( 'href', c.toDataURL( "image/png" ).replace( "image/png", "image/octet-stream" ) );
 	link.click();
 }
+
+

@@ -26,12 +26,15 @@ if( $Zoom == 0 ) { $Zoom = 1; }
 </td><td>
 	<button id="saveImage" onclick="saveImage()">Save Image</button>
 	<a id="saveLink"></a>
+	<button id="zoomImage">Zoom Image</button>
 </td></tr>
 <tr><td>
 	<canvas id="fractal" width="1024" height="768" style="border:1px solid #000000;"></canvas>
 </td><td>
-	<canvas id="zoomCanvas" width="300" height="300" style="border:1px solid #000000;"></canvas>
-</td></td>
+	<input type="text" name="iterations" id="iterations">
+	<input type="text" id="endX">
+	<input type="text" id="endY">
+</td></tr>
 </table>
 </body>
 </html>
