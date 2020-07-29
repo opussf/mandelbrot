@@ -78,8 +78,8 @@ function mandelbrotFunction() {
 		var y = event.clientY;
 
 		var zoomImgData = ctx.getImageData(  // left, top, width, height
-				Math.min( Math.max( 0, x - (zw/2) ) ),
-				Math.min( Math.max( 0, y - (zh/2) ) ),
+				x - (zw/2),
+				y - (zh/2),
 				zw,
 				zh);
 		zoomctx.putImageData( zoomImgData, 0, 0 );  	
@@ -99,3 +99,14 @@ function mandelbrotFunction() {
 	c.addEventListener( 'click', zoomClick );
 }
 
+function saveImage() {
+	var c = document.getElementById( "fractal" );
+	var XCenter = document.getElementById( 'XCenter' ).value;
+	var YCenter = document.getElementById( 'YCenter' ).value;
+	var Z = document.getElementById( "Zoom" ).value;
+	var link = document.getElementById( "saveLink" );
+	var filename = "Mandelbrot_X" + XCenter + "_Y" + YCenter + "_Zoom" + Z;
+	link.setAttribute( 'download', filename + ".png" );
+	link.setAttribute( 'href', c.toDataURL( "image/png" ).replace( "image/png", "image/octet-stream" ) );
+	link.click();
+}
