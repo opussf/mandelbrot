@@ -114,17 +114,24 @@ function mandelbrotFunction() {
 		md = false;
 	}
 	function zoomImage( event ) {
-		var mbX = mbXMin + ( xInc * cX );
-		var mbY = mbYMin + ( yInc * cY );
-		var xDis = Math.max( startX, endX ) - Math.min( startX, endX );
-		var yDis = Math.max( startY, endY ) - Math.min( startY, endY );
-
-		if( xDis > yDis ) {
-			mbDis = ( xInc * xDis );
+		if( startX == 0 && endY == 0 ) {
+			mbX = XCenter;
+			mbY = YCenter;
+			zoom = ZoomOri * 2;
 		} else {
-			mbDis = ( yInc * yDis );
+		
+			var mbX = mbXMin + ( xInc * cX );
+			var mbY = mbYMin + ( yInc * cY );
+			var xDis = Math.max( startX, endX ) - Math.min( startX, endX );
+			var yDis = Math.max( startY, endY ) - Math.min( startY, endY );
+
+			if( xDis > yDis ) {
+				mbDis = ( xInc * xDis );
+			} else {
+				mbDis = ( yInc * yDis );
+			}
+			var zoom = 1 / mbDis * 2;
 		}
-		var zoom = 1 / mbDis * 2;
 	
 		var parameters = "?XCenter=" + mbX + "&YCenter=" + mbY + "&Zoom=" + zoom;
 		window.open( parameters, '_self' );
@@ -136,38 +143,6 @@ function mandelbrotFunction() {
 	c.addEventListener( "mouseup", mouseUp );
 
 	document.getElementById( "zoomImage" ).addEventListener( "click", zoomImage );
-
-
-
-/*
-	var zoomctx = document.getElementById( "zoomCanvas" ).getContext( '2d' );
-	var zw = document.getElementById( "zoomCanvas" ).width;
-	var zh = document.getElementById( "zoomCanvas" ).height;
-	var zoom = function( event ) {
-		var x = event.clientX;
-		var y = event.clientY;
-
-		var zoomImgData = ctx.getImageData(  // left, top, width, height
-				x - (zw/2),
-				y - (zh/2),
-				zw,
-				zh);
-		zoomctx.putImageData( zoomImgData, 0, 0 );  	
-		zoomctx.scale( 2, 2 );
-	}
-	c.addEventListener( 'mousemove', zoom );
-	var zoomClick = function( event ) {
-		var x = event.clientX;
-		var y = event.clientY;
-		var mbX = mbXMin + ( xInc * x );
-		var mbY = mbYMin + ( yInc * y );
-		var Zoom = ZoomOri * 5;
-	
-		var parameters = "?XCenter=" + mbX + "&YCenter=" + mbY + "&Zoom=" + Zoom;
-		window.open( parameters, '_self' );
-	}
-	c.addEventListener( 'click', zoomClick );
-*/
 }
 
 function saveImage() {

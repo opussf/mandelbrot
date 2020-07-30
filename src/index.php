@@ -31,9 +31,9 @@ if( $Zoom == 0 ) { $Zoom = 1; }
 <tr><td>
 	<canvas id="fractal" width="1024" height="768" style="border:1px solid #000000;"></canvas>
 </td><td>
-	<input type="text" name="iterations" id="iterations">
-	<input type="text" id="endX">
-	<input type="text" id="endY">
+	<table>
+	<tr><td>Iterations</td><td><input type="text" name="iterations" id="iterations"></td></tr>
+	</table>
 </td></tr>
 </table>
 </body>
