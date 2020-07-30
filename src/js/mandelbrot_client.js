@@ -124,7 +124,7 @@ function mandelbrotFunction() {
 		} else {
 			mbDis = ( yInc * yDis );
 		}
-		var zoom = mbDis / 2;
+		var zoom = 1 / mbDis * 2;
 	
 		var parameters = "?XCenter=" + mbX + "&YCenter=" + mbY + "&Zoom=" + zoom;
 		window.open( parameters, '_self' );
