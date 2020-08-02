@@ -80,17 +80,26 @@ function mandelbrotFunction() {
 	cX = 0;
 	cY = 0;
 	md = false;
+
+	function getCursorPosition( event ) {
+		rect = c.getBoundingClientRect();
+		x = event.clientX - rect.left;
+		y = event.clientY - rect.top;
+		return [x,y] ;
+	}
 	function mouseDown( event ) {
-		startX = event.clientX;
-		startY = event.clientY;
-		endX = event.clientX;
-		endY = event.clientY;
+		coord = getCursorPosition( event );
+		startX = coord[0];
+		startY = coord[1];
+		endX = coord[0];
+		endY = coord[1];
 		md = true;
 	}
 	function mouseMove( event ) {
 		if( typeof md === 'undefined' || md === false ) { return; }
-		endX = event.clientX;
-		endY = event.clientY;
+		coord = getCursorPosition( event );
+		endX = coord[0];
+		endY = coord[1];
 
 		cX = Math.min( startX, endX ) + ( ( Math.max( startX, endX ) - Math.min( startX, endX ) ) / 2 );
 		cY = Math.min( startY, endY ) + ( ( Math.max( startY, endY ) - Math.min( startY, endY ) ) / 2 );
