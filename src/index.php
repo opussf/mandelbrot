@@ -27,12 +27,13 @@ if( $Zoom == 0 ) { $Zoom = 1; }
 	<button id="saveImage" onclick="saveImage()">Save Image</button>
 	<a id="saveLink"></a>
 	<button id="zoomImage">Zoom Image</button>
+	<button id="useScreen" onclick="changeResoltion()">Use Screen Resolution</button>
 </td></tr>
 <tr><td>
 	<canvas id="fractal" width="1024" height="768" style="border:1px solid #000000;"></canvas>
 </td><td>
 	<table>
-	<tr><td>Iterations</td><td><input type="text" name="iterations" id="iterations"></td></tr>
+	<tr><td>Calculation time: </td><td><input type="text" name="rendertime" id="rendertime"></td></tr>
 	</table>
 </td></tr>
 </table>

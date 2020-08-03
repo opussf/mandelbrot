@@ -52,3 +52,8 @@ function downloadImage(data, filename = 'untitled.jpeg') {
 ## More interaction (slow script fix)
 
 https://stackoverflow.com/questions/6598285/how-do-i-prevent-the-slow-script-warning-and-force-the-browser-to-continue-runni
+
+1920 x 1200
+
+2560 x 1600
+

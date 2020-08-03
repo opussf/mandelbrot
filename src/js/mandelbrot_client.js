@@ -53,6 +53,7 @@ function mandelbrotFunction() {
 
 	var x, y;
 	var totalIterations = 0;
+	var startTime = window.performance.now();
 	for( y = 0; y <= height; y++ ) {
 		for( x = 0; x <= width; x++ ) {
 			//console.log( x + "," + y + "\n" ) ;
@@ -70,8 +71,8 @@ function mandelbrotFunction() {
 		}
 		ctx.putImageData( imgData, 0, 0 );
 	}
-	document.getElementById( "iterations" ).value = totalIterations;
-
+	var endTime = window.performance.now();
+	document.getElementById( "rendertime" ).value = ( (endTime - startTime) /1000)  + " seconds";
 
 	startX = 0;
 	startY = 0;
@@ -166,4 +167,17 @@ function saveImage() {
 	link.click();
 }
 
-
+function changeResoltion() {
+	var c = document.getElementById( "fractal" );
+	var b = document.getElementById( "useScreen" );
+	if( c.width == screen.width && c.height == screen.height ) {
+		c.width=1024;
+		c.height=768;
+		b.innerHTML = "Use Screen Resolution";
+	} else {
+		c.width = window.screen.width * window.devicePixelRatio;
+		c.height = window.screen.height * window.devicePixelRatio;
+		b.innerHTML = "Reset Resolution";
+	}
+	mandelbrotFunction();
+}
