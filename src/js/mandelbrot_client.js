@@ -52,7 +52,7 @@ function mandelbrotFunction() {
 	var yInc = ( mbYMax - mbYMin ) / height;
 
 	var x, y;
-	var totalIterations = 0;
+	var maxIterations = 0;
 	var startTime = window.performance.now();
 	for( y = 0; y <= height; y++ ) {
 		for( x = 0; x <= width; x++ ) {
@@ -60,7 +60,7 @@ function mandelbrotFunction() {
 			mbX = mbXMin + ( xInc * x );
 			mbY = mbYMin + ( yInc * y );
 			var cA = mandelSet( mbX, mbY, 40000 );
-			totalIterations += cA[1];
+			maxIterations = Math.max( maxIterations, cA[0] );
 			var dataCoord = ( ( y * width ) + x ) * 4;
 			//console.log( dataCoord  )
 			var colors = mkColorArray( cA );
@@ -73,6 +73,7 @@ function mandelbrotFunction() {
 	}
 	var endTime = window.performance.now();
 	document.getElementById( "rendertime" ).value = ( (endTime - startTime) /1000)  + " seconds";
+	document.getElementById( "maxIterations" ).value = maxIterations;
 
 	startX = 0;
 	startY = 0;

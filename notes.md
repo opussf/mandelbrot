@@ -57,3 +57,7 @@ https://stackoverflow.com/questions/6598285/how-do-i-prevent-the-slow-script-war
 
 2560 x 1600
 
+## Upload
+
+https://www.dynamsoft.com/codepool/upload-html-canvas-data-to-php-server.html
+
