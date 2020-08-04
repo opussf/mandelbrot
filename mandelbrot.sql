@@ -16,9 +16,3 @@ GRANT
 	UPDATE,
 	SELECT
 ON mandelbrot.* TO opus@localhost;
-
-
-
-
-
- Name: Mandelbrot_X-0.751526970646_Y0.0308729631743_Zoom73563.5019782.png
